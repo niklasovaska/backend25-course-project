@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Album collection</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+    <div class="container">
+        <h1>Add album</h1>
+        <form th:object="${album}" th:action="@{/savealbum}" action="#" method="post">
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" class="form-control" id="title" th:field="*{title}" />
+                <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label for="artist" class="form-label">Artist</label>
+                <select id="artist" name="artist" class="form-control">
+                    <option value="" selected="selected" disabled>Select artist</option>
+                    <option th:each="artist : ${artists}" th:value="${artist.artistId}" th:text="${artist.name}"></option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="releaseYear" class="form-label">Release year</label>
+                <input type="number" class="form-control" id="releaseYear" th:field="*{releaseYear}" />
+                <span th:if="${#fields.hasErrors('releaseYear')}" th:errors="*{releaseYear}" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label for="rating" class="form-label">Rating</label>
+                <input type="number" class="form-control" id="rating" th:field="*{rating}" step="0.5" min="0" max="5"/>
+                <span th:if="${#fields.hasErrors('rating')}" th:errors="*{rating}" class="text-danger" ></span>
+            </div>
+            <input type="submit" value="Add album" class="btn btn-success"></input>
+            <a th:href="@{/albumlist}" class="btn btn-warning">Cancel</a>
+        </form>
+    </div>
+</body>
+</html>
