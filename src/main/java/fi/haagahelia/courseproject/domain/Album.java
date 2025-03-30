@@ -16,7 +16,7 @@ public class Album {
     private String title;
 
     @ManyToOne
-    @JoinColumn(name = "albumId")
+    @JoinColumn(name = "artistId")
     private Artist artist;
 
     private int releaseYear;
@@ -28,6 +28,7 @@ public class Album {
     public Album(String title, Artist artist, int releaseYear, double rating) {
         super();
         this.title = title;
+        this.artist = artist;
         this.releaseYear = releaseYear;
         this.rating = rating;
     }
