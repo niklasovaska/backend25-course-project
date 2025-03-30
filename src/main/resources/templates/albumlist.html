@@ -17,12 +17,16 @@
 				<th>Artist</th>
 				<th>Release year</th>
 				<th>Rating</th>
+				<th></th>
+				<th></th>
 			</tr>  
 			<tr th:each = "album : ${albums}">
 				<td th:text="${album.title}"></td>
 				<td th:text="${album.artist.name}"></td>
 				<td th:text="${album.releaseYear}"></td>
-				<td th:text="${album.rating}"></td> 		
+				<td th:text="${album.rating}"></td>
+				<td><a th:href="@{edit/{id}(id=${album.id})}" class="btn btn-warning btn-sm">Edit</a></td>
+				<td><a th:href="@{/delete/{id}(id=${album.id})}" class="btn btn-danger btn-sm">Delete</a></td>		
 			</tr>
 		</table>
 		<a href="/addalbum" class=" btn btn-success">Add new album</a>
