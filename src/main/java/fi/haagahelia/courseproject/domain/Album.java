@@ -6,6 +6,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Album {
@@ -13,14 +18,19 @@ public class Album {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotBlank(message = "Album title is mandatory")
     private String title;
 
     @ManyToOne
     @JoinColumn(name = "artistId")
     private Artist artist;
 
+    @NotNull
+    @Min(value=1, message = "Please enter a valid year")
     private int releaseYear;
 
+    @DecimalMin(value="0.0", message = "Rating should not be less than 0")
+    @DecimalMax(value="5.0", message = "Rating should not be greater than 5")
     private double rating;
 
     public Album() {}

@@ -3,6 +3,7 @@ package fi.haagahelia.courseproject.web;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -10,6 +11,8 @@ import fi.haagahelia.courseproject.domain.Album;
 import fi.haagahelia.courseproject.domain.AlbumRepository;
 import fi.haagahelia.courseproject.domain.Artist;
 import fi.haagahelia.courseproject.domain.ArtistRepository;
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.PostMapping;
 
 
@@ -44,7 +47,13 @@ public class AlbumController {
 
     // Save album
     @PostMapping("/savealbum")
-    public String save(Album album) {
+    public String save(@Valid Album album, BindingResult bindingResult, Model model) {
+        if(bindingResult.hasErrors()) {
+            model.addAttribute("album", album);
+            model.addAttribute("artists", artistRepository.findAll());
+            return "addalbum";
+        }
+
         albumRepository.save(album);
         return "redirect:/albumlist";
     }
