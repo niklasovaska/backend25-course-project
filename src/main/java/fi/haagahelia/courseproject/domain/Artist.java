@@ -55,6 +55,6 @@ public class Artist {
 
     @Override
     public String toString() {
-        return "Artist [artistId=" + artistId + ", name=" + name + ", albums=" + albums + "]";
+        return "Artist [artistId=" + artistId + ", name=" + name + "]";
     }
 }

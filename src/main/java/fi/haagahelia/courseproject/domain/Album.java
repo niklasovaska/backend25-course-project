@@ -21,10 +21,6 @@ public class Album {
     @NotBlank(message = "Album title is mandatory")
     private String title;
 
-    @ManyToOne
-    @JoinColumn(name = "artistId")
-    private Artist artist;
-
     @NotNull
     @Min(value=1, message = "Please enter a valid year")
     private int releaseYear;
@@ -32,6 +28,10 @@ public class Album {
     @DecimalMin(value="0.0", message = "Rating should not be less than 0")
     @DecimalMax(value="5.0", message = "Rating should not be greater than 5")
     private double rating;
+
+    @ManyToOne
+    @JoinColumn(name = "artistId")
+    private Artist artist;
 
     public Album() {}
 
