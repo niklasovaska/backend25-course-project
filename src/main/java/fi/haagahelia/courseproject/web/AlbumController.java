@@ -9,12 +9,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import fi.haagahelia.courseproject.domain.Album;
 import fi.haagahelia.courseproject.domain.AlbumRepository;
-import fi.haagahelia.courseproject.domain.Artist;
 import fi.haagahelia.courseproject.domain.ArtistRepository;
 import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 
@@ -22,11 +20,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class AlbumController {
 
+    @Autowired
     private AlbumRepository albumRepository;
-
-    public AlbumController(AlbumRepository albumRepository) {
-        this.albumRepository = albumRepository;
-    }
 
     @Autowired
     private ArtistRepository artistRepository;
@@ -64,9 +59,26 @@ public class AlbumController {
     // Edit album
     @GetMapping("edit/{id}")
     public String editAlbum(@PathVariable("id") Long albumId, Model model) {
-        model.addAttribute("album", albumRepository.findById(albumId));
+        Album album = albumRepository.findById(albumId)
+            .orElseThrow(() -> new IllegalArgumentException("Invalid album id:" + albumId));
+
+        model.addAttribute(album);
         model.addAttribute("artists", artistRepository.findAll());
         return "editalbum";
+    }
+
+    // Update album
+    @PostMapping("/update")
+    public String updateAlbum(@Valid Album album, BindingResult bindingResult, Model model) {
+        if(bindingResult.hasErrors()) {
+            model.addAttribute("album", album);
+            model.addAttribute("artists", artistRepository.findAll());
+            return "editalbum";
+        }
+
+        albumRepository.save(album);
+
+        return "redirect:albumlist";
     }
 
     // Delete album
@@ -75,11 +87,5 @@ public class AlbumController {
         albumRepository.deleteById(albumId);
         return "redirect:../albumlist";
     }
-
-
-    
-
-
-    
 
 }
