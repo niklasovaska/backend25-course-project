@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Album collection</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+    <div class="container">
+        <h1>Add artist</h1>
+        <form th:object="${artist}" th:action="@{/saveartist}" action="#" method="post">
+            <div class="mb-3">
+                <label for="name" class="form-label">Title</label>
+                <input type="text" class="form-control" id="name" th:field="*{name}" />
+                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
+            </div>
+            <input type="submit" value="Add artist" class="btn btn-success"></input>
+            <a th:href="@{/albumlist}" class="btn btn-warning">Cancel</a>
+        </form>
+    </div>
+</body>
+</html>
