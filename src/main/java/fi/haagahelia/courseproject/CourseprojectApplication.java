@@ -42,8 +42,8 @@ public class CourseprojectApplication {
 			albumRepository.save(new Album("Romance", fontaines, 2024, 4.5));
 
 			// save users
-			AppUser user1 = new AppUser("user", "$2a$10$SJKfM/dYrkA57SylPDW0W.aOD2dUKQHm/kGtdna33.NyrtGaOYPwm", "user");
-			AppUser user2 = new AppUser("admin", "$2a$10$OLkwmLt/qqYwnLwbA1S1JeQx8skSvvxZIhEK.D2VgtHdbixlMq..6", "admin");
+			AppUser user1 = new AppUser("user", "$2a$10$SJKfM/dYrkA57SylPDW0W.aOD2dUKQHm/kGtdna33.NyrtGaOYPwm", "USER");
+			AppUser user2 = new AppUser("admin", "$2a$10$OLkwmLt/qqYwnLwbA1S1JeQx8skSvvxZIhEK.D2VgtHdbixlMq..6", "ADMIN");
 			userRepository.save(user1);
 			userRepository.save(user2);
 		};
