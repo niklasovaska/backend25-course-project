@@ -25,28 +25,28 @@ public class CourseprojectApplication {
 		SpringApplication.run(CourseprojectApplication.class, args);
 	}
 
-	@Bean
-	public CommandLineRunner albumDemo(AlbumRepository albumRepository, ArtistRepository artistRepository, AppUserRepository userRepository) {
-		return (args) -> {
-			// save test artists
-			Artist smile = new Artist("The Smile");
-			artistRepository.save(smile);
-			Artist kiwanuka = new Artist("Michael Kiwanuka");
-			artistRepository.save(kiwanuka);
-			Artist fontaines = new Artist("Fontaines D.C.");
-			artistRepository.save(fontaines);
+	// @Bean
+	// public CommandLineRunner albumDemo(AlbumRepository albumRepository, ArtistRepository artistRepository, AppUserRepository userRepository) {
+	// 	return (args) -> {
+	// 		// save test artists
+	// 		Artist smile = new Artist("The Smile");
+	// 		artistRepository.save(smile);
+	// 		Artist kiwanuka = new Artist("Michael Kiwanuka");
+	// 		artistRepository.save(kiwanuka);
+	// 		Artist fontaines = new Artist("Fontaines D.C.");
+	// 		artistRepository.save(fontaines);
 
-			// save test albums
-			albumRepository.save(new Album("The Wall of Eyes", smile, 2024, 4.0));
-			albumRepository.save(new Album("Small Changes", kiwanuka, 2024, 5.0));
-			albumRepository.save(new Album("Romance", fontaines, 2024, 4.5));
+	// 		// save test albums
+	// 		albumRepository.save(new Album("The Wall of Eyes", smile, 2024, 4.0));
+	// 		albumRepository.save(new Album("Small Changes", kiwanuka, 2024, 5.0));
+	// 		albumRepository.save(new Album("Romance", fontaines, 2024, 4.5));
 
-			// save users
-			AppUser user1 = new AppUser("user", "$2a$10$SJKfM/dYrkA57SylPDW0W.aOD2dUKQHm/kGtdna33.NyrtGaOYPwm", "USER");
-			AppUser user2 = new AppUser("admin", "$2a$10$OLkwmLt/qqYwnLwbA1S1JeQx8skSvvxZIhEK.D2VgtHdbixlMq..6", "ADMIN");
-			userRepository.save(user1);
-			userRepository.save(user2);
-		};
-	}
+	// 		// save users
+	// 		AppUser user1 = new AppUser("user", "$2a$10$SJKfM/dYrkA57SylPDW0W.aOD2dUKQHm/kGtdna33.NyrtGaOYPwm", "USER");
+	// 		AppUser user2 = new AppUser("admin", "$2a$10$OLkwmLt/qqYwnLwbA1S1JeQx8skSvvxZIhEK.D2VgtHdbixlMq..6", "ADMIN");
+	// 		userRepository.save(user1);
+	// 		userRepository.save(user2);
+	// 	};
+	// }
 
 }
